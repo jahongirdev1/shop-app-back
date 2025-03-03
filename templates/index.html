@@ -1,0 +1,112 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Status</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-WPQ6c+zunAdcbhNMLWZmtOz8O2QXBE6tzxKqyZp8B7dyv4My4B7VRYbpWV+X1VwJUQLtN/+1BhFEnm7rlaZc8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            /* Custom styles (if needed) */
+            .button {
+                background-color: #e7e7e7;
+                color: black;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 4px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+                width: 130px;
+            }
+
+            .button:hover {
+                background-color: #d9d9d9;
+            }
+
+            .button.green {
+                background-color: #5cb85c;
+                color: white;
+                border-color: #4cae4c;
+            }
+
+            .button.red {
+                background-color: #d9534f;
+                color: white;
+                border-color: #d43f3a;
+            }
+
+            .container {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 20px;
+                margin-bottom: 20px;
+                background-color: #f9f9f9;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            span {
+                font-size: 14px;
+                margin-left: 10px;
+            }
+
+            a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            /* Mobile-specific styles */
+            @media (max-width: 576px) {
+                .container {
+                    padding: 15px;
+                }
+                .status-buttons {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+                .status-buttons .button {
+                    margin-bottom: 10px;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            {% for order in order_model reversed %}
+            <div class="row mb-4">
+                <div class="col-md-8 mx-auto">
+                    <div class="container">
+                        <h2>№{{ order.id }}<span>{{ order.user.fullName }}</span> <span>{{ order.user.phoneNumber }}</span> <span><a href="{{ order.locationLink }}">Location</a></span></h2>
+                        <div class="status-buttons">
+                            <button id="acceptBtn-{{ order.id }}" class="button {% if order.isAccepted %} {% if order.isAccepted == True %}green{% else %}button{% endif %} {% endif %}" {% if order.isCanceled %} {% if order.isCanceled == True %}disabled{% endif %} {% endif %} data-order-id="{{ order.id }}" data-status-field="isAccepted">Accept</button>
+                            <button id="processBtn-{{ order.id }}" class="button {% if order.isProcess %} {% if order.isProcess == True %}green{% else %}button2{% endif %} {% endif %}" {% if order.isCanceled %} {% if order.isCanceled == True %}disabled{% endif %} {% endif %} data-order-id="{{ order.id }}" data-status-field="isProcess">Process</button>
+                            <button id="deliveredBtn-{{ order.id }}" class="button {% if order.isDelivered %} {% if order.isDelivered == True %}green{% else %}button3{% endif %} {% endif %}" {% if order.isCanceled %} {% if order.isCanceled == True %}disabled{% endif %} {% endif %} data-order-id="{{ order.id }}" data-status-field="isDelivered">Delivered</button>
+                            <button id="completedBtn-{{ order.id }}" class="button {% if order.isCompleted %} {% if order.isCompleted == True %}green{% else %}button4{% endif %} {% endif %}" {% if order.isCanceled %} {% if order.isCanceled == True %}disabled{% endif %} {% endif %} data-order-id="{{ order.id }}" data-status-field="isCompleted">Completed</button>
+                            <button id="cancelledBtn-{{ order.id }}" class="button {% if order.isCanceled %} {% if order.isCanceled == True %}red{% else %}button5{% endif %} {% endif %}" {% if order.isCanceled %} {% if order.isCanceled == True %}disabled{% endif %} {% endif %} data-order-id="{{ order.id }}" data-status-field="isCanceled">Cancelled</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-dzpZF5PeWj12lY0pBppSwgnhfXnUrqVl9ZQmH/29eb1D4tO3ocuKx1PjRvTgZ1W1uWTQg4OosF9adB9vMYL6iA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/static/custom.js"></script>
+    </body>
+    </html>
