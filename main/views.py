@@ -425,10 +425,10 @@ def send_sms(request):
                 sms = f'Your code is: {sms_body}'
                 send_url = f'https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage'
                 response = requests.post(send_url, data={'chat_id': settings.CHAT_ID, 'text': sms})
-
                 if response.status_code == 200:
                     return JsonResponse({'status': 'success', 'message': 'SMS sent successfully'})
                 else:
+                    print('API',response.status_code, response.text)
                     return JsonResponse({'status': 'error', 'message': 'Failed to send SMS'}, status=response.status_code)
             else:
                 return JsonResponse({'status': 'error', 'message': 'No SMS body provided'}, status=400)

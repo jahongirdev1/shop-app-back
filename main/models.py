@@ -59,36 +59,36 @@ class PosterModel(models.Model):
       return f"{self.id}"
 
 
-class BranchModel(models.Model):
-    isOpen = models.BooleanField(default=True)
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    phoneNumber = models.CharField(max_length=20, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    openingHours = models.CharField(max_length=100, blank=True, null=True)
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
-    status = models.IntegerField(default=0)
+# class BranchModel(models.Model):
+#     isOpen = models.BooleanField(default=True)
+#     name = models.CharField(max_length=255)
+#     address = models.CharField(max_length=255)
+#     phoneNumber = models.CharField(max_length=20, blank=True, null=True)
+#     email = models.EmailField(blank=True, null=True)
+#     openingHours = models.CharField(max_length=100, blank=True, null=True)
+#     latitude = models.FloatField(blank=True, null=True)
+#     longitude = models.FloatField(blank=True, null=True)
+#     status = models.IntegerField(default=0)
+#
+#
+#     def __str__(self):
+#         return f"{self.name} --> {self.address}"
+#
 
 
-    def __str__(self):
-        return f"{self.name} --> {self.address}"
 
 
-
-
-
-class SettingsModel(models.Model):
-    delivery_price_9_6 = models.IntegerField(default=0)
-    delivery_price_6_2 = models.IntegerField(default=0)
-
-    def save(self, *args, **kwargs):
-        if not self.pk and SettingsModel.objects.exists():
-            raise ValidationError("Only one instance of SettingsModel is allowed.")
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return "Settings"
-    
-
+# class SettingsModel(models.Model):
+#     delivery_price_9_6 = models.IntegerField(default=0)
+#     delivery_price_6_2 = models.IntegerField(default=0)
+#
+#     def save(self, *args, **kwargs):
+#         if not self.pk and SettingsModel.objects.exists():
+#             raise ValidationError("Only one instance of SettingsModel is allowed.")
+#         super().save(*args, **kwargs)
+#
+#     def __str__(self):
+#         return "Settings"
+#
+#
 

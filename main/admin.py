@@ -44,7 +44,7 @@ admin.site.register(UserModel)
 admin.site.register(ProductModel, ProductModelAdmin)
 admin.site.register(OrderModel)
 admin.site.register(PosterModel, PosterModelAdmin)
-admin.site.register(BranchModel, BranchModelAdmin)
-admin.site.register(SettingsModel, SettingsModelAdmin)
+# admin.site.register(BranchModel, BranchModelAdmin)
+# admin.site.register(SettingsModel, SettingsModelAdmin)
 
 

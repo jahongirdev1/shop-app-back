@@ -30,11 +30,11 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '[::1]',
-    '10f6-95-82-100-112.ngrok-free.app',
+    '93af-2a0d-b201-13-3fe5-dd5d-b50a-5a-93cc.ngrok-free.app',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://10f6-95-82-100-112.ngrok-free.app',
+    'https://93af-2a0d-b201-13-3fe5-dd5d-b50a-5a-93cc.ngrok-free.app',
 ]
 
 MEDIA_URL = '/media/'
@@ -160,6 +160,6 @@ JAZZMIN_SETTINGS={
     'site_header': 'Jahongir Shop',
     'site_brand': "Site Brand",
     'copyright': 'mr__jahongir',
-    'site_logo': 'assets/logo.png',
-    'user_avatar': "assets/logo.png",
+    # 'site_logo': 'assets/logo.png',
+    # 'user_avatar': "assets/logo.png",
 }
